@@ -25,10 +25,6 @@ endif
 
 "autocmd: 指定したイベントが発生したときに自動的に実行するコマンドを指定
 "VimEnter: vimの全ての起動処理が終わった後に発生するイベント
-
-"* の部分: パターン 全ファイルに適用させる為*を使用
-autocmd VimEnter * execute 'NERDTree'
-
 " ペーストモードからノーマルモードに戻る時に自動で解除
 autocmd InsertLeave * set nopaste
 
