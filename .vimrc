@@ -25,6 +25,8 @@ endif
 
 "autocmd: 指定したイベントが発生したときに自動的に実行するコマンドを指定
 "VimEnter: vimの全ての起動処理が終わった後に発生するイベント
+autocmd VimEnter * execute 'NERDTree'
+
 " ペーストモードからノーマルモードに戻る時に自動で解除
 autocmd InsertLeave * set nopaste
 
@@ -34,8 +36,26 @@ set number
 "検索結果をハイライトで表示
 set hlsearch
 
-"タブ文字の表示幅
+"ファイル内にあるタブ文字の表示幅
 set tabstop=2
+
+"自動インデントに使われる空白の数
+set shiftwidth=2
+
+"連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
+set softtabstop=2
+
+"タブを可視化する
+set list
+
+"tab: タブ文字を表示
+"trail：行末のスペースを表示
+"nbsp：ノーブレークスペースを表示
+"eol：改行を表示
+set listchars=tab:»-,trail:-,nbsp:%
+
+"タブ文字ではなく、半角スペースを挿入
+set expandtab
 
 "入力中のコマンドを表示
 set showcmd
@@ -48,9 +68,6 @@ set shiftwidth=2
 
 "backspaceの設定
 set backspace=indent,eol,start
-
-"クリップボードからのペーストを可能にする
-set paste
 
 "ack.vimからagを利用
 let g:ackprg = 'ag --nogroup --nocolor --column'
