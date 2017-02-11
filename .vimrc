@@ -9,16 +9,16 @@ if dein#load_state(expand('~/.vim/dein'))
   call dein#add('Shougo/dein.vim')
   call dein#add('Shougo/neocomplete.vim')
   call dein#add('scrooloose/nerdtree')
-	call dein#add('ctrlpvim/ctrlp.vim')
-	call dein#add('mileszs/ack.vim')
-	call dein#add('rking/ag.vim')
-	call dein#add('airblade/vim-gitgutter')
-	call dein#add('scrooloose/syntastic')
-	call dein#add('Shougo/vimproc.vim', {'build': 'make'})
-	call dein#add('Shougo/unite.vim')
-	call dein#add('Shougo/neomru.vim')
+  call dein#add('ctrlpvim/ctrlp.vim')
+  call dein#add('mileszs/ack.vim')
+  call dein#add('rking/ag.vim')
+  call dein#add('airblade/vim-gitgutter')
+  call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+  call dein#add('Shougo/unite.vim')
+  call dein#add('Shougo/neomru.vim')
+  call dein#add('w0rp/ale')
 
-	call dein#end()
+  call dein#end()
   call dein#save_state()
 endif
 
@@ -52,7 +52,7 @@ set list
 "trail：行末のスペースを表示
 "nbsp：ノーブレークスペースを表示
 "eol：改行を表示
-set listchars=tab:»-,trail:-,nbsp:%
+set listchars=tab:__,trail:-,nbsp:%
 
 "タブ文字ではなく、半角スペースを挿入
 set expandtab
@@ -72,24 +72,26 @@ set backspace=indent,eol,start
 "ack.vimからagを利用
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
-"構文エラー行に「>>」を表示
-let g:syntastic_enable_signs = 1
 
-"他のVimプラグインと競合を防止
-let g:syntastic_always_populate_loc_list = 1
+"ale
+set statusline+='%{ALEGetStatusLine()}'
+let g:ale_statusline_format = ['E:%d', 'W:%d', 'OK!']
 
-"構文エラーリストを非表示
-let g:syntastic_auto_loc_list = 0
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
 
-"ファイルを開いた時に構文エラーチェックを実行
-let g:syntastic_check_on_open = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
-"ファイルタイプを指定
-let g:syntastic_mode_map = { 'mode': 'passive',
-												\ 'active_filetypes': ['ruby', 'javascript'] }
+let g:ale_linters = {
+\  'javascript': ['flow'],
+\  'ruby': ['rubocop'],
+\}
 
-"ツールの指定
-let g:syntastic_ruby_checkers = ['rubocop']
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 "挿入モードでのカーソル移動
 inoremap <C-j> <Down>
