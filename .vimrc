@@ -72,7 +72,6 @@ set backspace=indent,eol,start
 "ack.vimからagを利用
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
-
 "ale
 set statusline+='%{ALEGetStatusLine()}'
 let g:ale_statusline_format = ['E:%d', 'W:%d', 'OK!']
