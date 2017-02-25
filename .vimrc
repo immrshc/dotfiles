@@ -17,7 +17,7 @@ if dein#load_state(expand('~/.vim/dein'))
   call dein#add('Shougo/unite.vim')
   call dein#add('Shougo/neomru.vim')
   call dein#add('w0rp/ale')
-
+  call dein#add('tpope/vim-surround')
   call dein#end()
   call dein#save_state()
 endif
@@ -73,8 +73,8 @@ set backspace=indent,eol,start
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 "ale
-set statusline+='%{ALEGetStatusLine()}'
-let g:ale_statusline_format = ['E:%d', 'W:%d', 'OK!']
+"set statusline+='%{ALEGetStatusLine()}'
+"let g:ale_statusline_format = ['E:%d', 'W:%d', 'OK!']
 
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '>>'
