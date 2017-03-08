@@ -27,6 +27,9 @@ endif
 "VimEnter: vimの全ての起動処理が終わった後に発生するイベント
 autocmd VimEnter * execute 'NERDTree'
 
+" ファイル編集中にスワップファイルを作らない
+set noswapfile
+
 " ペーストモードからノーマルモードに戻る時に自動で解除
 autocmd InsertLeave * set nopaste
 
