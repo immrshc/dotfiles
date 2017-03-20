@@ -9,6 +9,7 @@ if dein#load_state(expand('~/.vim/dein'))
   call dein#add('Shougo/dein.vim')
   call dein#add('Shougo/neocomplete.vim')
   call dein#add('scrooloose/nerdtree')
+  call dein#add('Xuyuanp/nerdtree-git-plugin')
   call dein#add('ctrlpvim/ctrlp.vim')
   call dein#add('mileszs/ack.vim')
   call dein#add('rking/ag.vim')
@@ -18,6 +19,7 @@ if dein#load_state(expand('~/.vim/dein'))
   call dein#add('Shougo/neomru.vim')
   call dein#add('w0rp/ale')
   call dein#add('tpope/vim-surround')
+  call dein#add('kana/vim-submode')
   call dein#end()
   call dein#save_state()
 endif
@@ -106,6 +108,22 @@ inoremap <C-v> <BS>
 
 "NERDTreeでのタブの移動
 nnoremap <C-n> gt
+
+"NERDTreeでバッファの変更を可能にする
+set modifiable
+
+" Window Sizeの変更モードを定義
+" argv[1]：mode, arg[2]：option, argv[3]：{lhs}, argv[4]: {rhs}
+" enter_with: モードに入りバインドキーを実行する
+call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
+call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
+call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>+')
+call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>-')
+" map: モードに入った時のキーバインド
+call submode#map('winsize', 'n', '', '>', '<C-w>>')
+call submode#map('winsize', 'n', '', '<', '<C-w><')
+call submode#map('winsize', 'n', '', '+', '<C-w>+')
+call submode#map('winsize', 'n', '', '-', '<C-w>-')
 
 filetype plugin indent on
 syntax enable
