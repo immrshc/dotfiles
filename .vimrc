@@ -20,6 +20,7 @@ if dein#load_state(expand('~/.vim/dein'))
   call dein#add('w0rp/ale')
   call dein#add('tpope/vim-surround')
   call dein#add('kana/vim-submode')
+  call dein#add('tpope/vim-fugitive')
   call dein#end()
   call dein#save_state()
 endif
@@ -104,7 +105,6 @@ inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 inoremap <C-a> <HOME>
 inoremap <C-e> <END>
-inoremap <C-v> <BS>
 
 "NERDTreeでのタブの移動
 nnoremap <C-n> gt
@@ -124,6 +124,20 @@ call submode#map('winsize', 'n', '', '>', '<C-w>>')
 call submode#map('winsize', 'n', '', '<', '<C-w><')
 call submode#map('winsize', 'n', '', '+', '<C-w>+')
 call submode#map('winsize', 'n', '', '-', '<C-w>-')
+
+" fugitive
+nnoremap <silent> gw :<C-u>Gwrite<CR>
+nnoremap <silent> gc :<C-u>Gcommit<CR>
+nnoremap <silent> gcp :<C-u>Gcommit -p<CR>
+nnoremap <silent> gcv :<C-u>Gcommit -v<CR>
+nnoremap <silent> gca :<C-u>Gcommit --amend<CR>
+nnoremap <silent> gd :<C-u>Gdiff<CR>
+nnoremap <silent> gb :<C-u>Gblame<CR>
+nnoremap <silent> gps :<C-u>Gpush<CR>
+nnoremap <silent> gpl :<C-u>Gpull<CR>
+nnoremap <silent> gtig :<C-u>Agit<CR>
+nnoremap <silent> gl :<C-u>AgitFile<CR>
+nnoremap <silent> gbr :<C-u>Merginal<CR>
 
 filetype plugin indent on
 syntax enable
