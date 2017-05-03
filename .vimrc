@@ -10,7 +10,6 @@ if dein#load_state(expand('~/.vim/dein'))
   call dein#add('Shougo/neocomplete.vim')
   call dein#add('scrooloose/nerdtree')
   call dein#add('Xuyuanp/nerdtree-git-plugin')
-  call dein#add('ctrlpvim/ctrlp.vim')
   call dein#add('mileszs/ack.vim')
   call dein#add('rking/ag.vim')
   call dein#add('airblade/vim-gitgutter')
@@ -21,6 +20,7 @@ if dein#load_state(expand('~/.vim/dein'))
   call dein#add('tpope/vim-surround')
   call dein#add('kana/vim-submode')
   call dein#add('tpope/vim-fugitive')
+  call dein#add('soramugi/auto-ctags.vim')
   call dein#end()
   call dein#save_state()
 endif
@@ -138,6 +138,24 @@ nnoremap <silent> gpl :<C-u>Gpull<CR>
 nnoremap <silent> gtig :<C-u>Agit<CR>
 nnoremap <silent> gl :<C-u>AgitFile<CR>
 nnoremap <silent> gbr :<C-u>Merginal<CR>
+
+" auto-ctags
+" tagsファイルの作成場所の指定
+set tags+=.git/tags
+
+" セーブした時に自動でctagsを実行
+let g:auto_ctags = 1
+" .gitignoreの指定を回避するために.gitディレクトリにtagsファイルを作成する
+let g:auto_ctags_directory_list = ['.git']
+
+" <C-]> そのままの画面でタグジャンプ
+" <C-t> タグジャンプする前の画面に戻る
+" :tjump 該当結果が複数ある場合にリスト表示
+" タグジャンプ先が複数ある場合は一覧表示
+nnoremap <C-]> g<C-]>
+" タグジャンプした時に画面を分割する
+nnoremap <C-h> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
+nnoremap <C-k> :split<CR> :exe("tjump ".expand('<cword>'))<CR>
 
 filetype plugin indent on
 syntax enable
