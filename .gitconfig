@@ -1,7 +1,0 @@
-[credential]
-  elper = osxkeychain
-[user]
-  name = shoichiimamura
-  email = imamura@c-fo.com
-[core]
-  editor = /usr/local/bin/vim
