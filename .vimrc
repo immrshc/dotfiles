@@ -140,7 +140,7 @@ nnoremap <silent> gl :<C-u>AgitFile<CR>
 nnoremap <silent> gbr :<C-u>Merginal<CR>
 
 " ctags
-" tagsファイルの作成場所の指定
+" tagsファイルの読取場所の指定
 set tags+=.git/tags
 " <C-]> そのままの画面でタグジャンプ
 " <C-t> タグジャンプする前の画面に戻る
@@ -155,10 +155,10 @@ nnoremap <C-k> :split<CR> :exe("tjump ".expand('<cword>'))<CR>
 " セーブした時に自動でctagsを実行
 " :Ctags でもctagsを実行できる
 let g:auto_ctags = 1
-" .gitignoreの指定を回避するために.gitディレクトリにtagsファイルを作成する
+" .gitディレクトリにtagsファイルを作成する
 let g:auto_ctags_directory_list = ['.git']
 " ctagsのオプション指定
-let g:auto_ctags_tags_args = '--recurse --languages=Ruby,JavaScript --exclude=node_modules --exclude=vendor --exclude=".git" --exclude=log'
+let g:auto_ctags_tags_args = '--recurse=yes --append=yes --tag-relative=yes --languages=Ruby,JavaScript --exclude=node_modules --exclude=vendor --exclude=.git --exclude=log'
 
 filetype plugin indent on
 syntax enable
