@@ -93,7 +93,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 let g:ale_linters = {
 \  'javascript': ['eslint', 'flow'],
-\  'ruby': ['rubocop', 'ruby'],
+\  'ruby': ['ruby'],
 \}
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
