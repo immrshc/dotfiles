@@ -21,13 +21,14 @@ if dein#load_state(expand('~/.vim/dein'))
   call dein#add('kana/vim-submode')
   call dein#add('tpope/vim-fugitive')
   call dein#add('soramugi/auto-ctags.vim')
+  call dein#add('kchmck/vim-coffee-script')
   call dein#end()
   call dein#save_state()
 endif
 
 
-"autocmd: 指定したイベントが発生したときに自動的に実行するコマンドを指定
-"VimEnter: vimの全ての起動処理が終わった後に発生するイベント
+" autocmd: 指定したイベントが発生したときに自動的に実行するコマンドを指定
+" VimEnter: vimの全ての起動処理が終わった後に発生するイベント
 autocmd VimEnter * execute 'NERDTree'
 
 " ファイル編集中にスワップファイルを作らない
@@ -91,8 +92,8 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 let g:ale_linters = {
-\  'javascript': ['flow'],
-\  'ruby': ['rubocop'],
+\  'javascript': ['eslint', 'flow'],
+\  'ruby': ['rubocop', 'ruby'],
 \}
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
@@ -159,6 +160,11 @@ let g:auto_ctags = 1
 let g:auto_ctags_directory_list = ['.git']
 " ctagsのオプション指定
 let g:auto_ctags_tags_args = '--recurse=yes --append=yes --tag-relative=yes --languages=Ruby,JavaScript --exclude=node_modules --exclude=vendor --exclude=.git --exclude=log'
+
+" CoffeeScript
+augroup filetypedetect
+  autocmd! BufNewFile,BufRead *.coffee setfiletype coffee
+augroup END
 
 filetype plugin indent on
 syntax enable
