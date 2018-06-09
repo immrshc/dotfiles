@@ -22,6 +22,8 @@ if dein#load_state(expand('~/.vim/dein'))
   call dein#add('tpope/vim-fugitive')
   call dein#add('soramugi/auto-ctags.vim')
   call dein#add('kchmck/vim-coffee-script')
+  call dein#add('fatih/vim-go')
+  call dein#add('ekalinin/Dockerfile.vim')
   call dein#end()
   call dein#save_state()
 endif
@@ -92,8 +94,8 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 let g:ale_linters = {
-\  'javascript': ['eslint', 'flow'],
-\  'ruby': ['ruby'],
+\  'javascript': ['eslint'],
+\  'ruby': ['ruby', 'rubocop'],
 \}
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
