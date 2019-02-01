@@ -5,7 +5,6 @@ set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
 if dein#load_state(expand('~/.vim/dein'))
   call dein#begin(expand('~/.vim/dein'))
-
   call dein#add('Shougo/dein.vim')
   call dein#add('Shougo/neocomplete.vim')
   call dein#add('scrooloose/nerdtree')
@@ -20,8 +19,6 @@ if dein#load_state(expand('~/.vim/dein'))
   call dein#add('tpope/vim-surround')
   call dein#add('kana/vim-submode')
   call dein#add('tpope/vim-fugitive')
-  call dein#add('soramugi/auto-ctags.vim')
-  call dein#add('kchmck/vim-coffee-script')
   call dein#add('fatih/vim-go')
   call dein#add('ekalinin/Dockerfile.vim')
   call dein#end()
@@ -141,32 +138,6 @@ nnoremap <silent> gpl :<C-u>Gpull<CR>
 nnoremap <silent> gtig :<C-u>Agit<CR>
 nnoremap <silent> gl :<C-u>AgitFile<CR>
 nnoremap <silent> gbr :<C-u>Merginal<CR>
-
-" ctags
-" tagsファイルの読取場所の指定
-set tags+=.git/tags
-" <C-]> そのままの画面でタグジャンプ
-" <C-t> タグジャンプする前の画面に戻る
-" :tjump 該当結果が複数ある場合にリスト表示
-" タグジャンプ先が複数ある場合は一覧表示
-nnoremap <C-]> g<C-]>
-" タグジャンプした時に画面を分割する
-nnoremap <C-h> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
-nnoremap <C-k> :split<CR> :exe("tjump ".expand('<cword>'))<CR>
-
-" auto-ctags
-" セーブした時に自動でctagsを実行
-" :Ctags でもctagsを実行できる
-let g:auto_ctags = 1
-" .gitディレクトリにtagsファイルを作成する
-let g:auto_ctags_directory_list = ['.git']
-" ctagsのオプション指定
-let g:auto_ctags_tags_args = '--recurse=yes --append=yes --tag-relative=yes --languages=Ruby,JavaScript --exclude=node_modules --exclude=vendor --exclude=.git --exclude=log'
-
-" CoffeeScript
-augroup filetypedetect
-  autocmd! BufNewFile,BufRead *.coffee setfiletype coffee
-augroup END
 
 filetype plugin indent on
 syntax enable

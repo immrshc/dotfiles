@@ -1,6 +1,0 @@
---recurse=yes
---languages=Ruby,JavaScript
---exclude=node_modules
---exclude=vendor
---exclude=".git"
---exclude=log
